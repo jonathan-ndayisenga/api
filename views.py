@@ -79,3 +79,12 @@ def reset_password(request):
         return Response({"message": "Password reset successful"}, status=status.HTTP_200_OK)
     else:
         return Response({"message": "Password reset failed"}, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+    
+@api_view(['GET'])
+def roles(request):
+    roles = Role.objects.all()
+    role_names = [role.name for role in roles]
+    return Response(role_names, status=status.HTTP_200_OK)
+
